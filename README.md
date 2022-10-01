@@ -15,3 +15,9 @@ improve memorization. Thus, this project gives me the opportunity to create a st
 strengthen my programming abilities in the process. I am interested in this project because I believe creating my own
 questions will help me even more with remembering how to answer them, and other students may find this project helpful
 as well.
+
+## User Stories
+* As a user, I want to be able to add a question and an associated answer to the set
+* As a user, I want to be able to delete a question and its answer from the set
+* As a user, I want to be able to modify existing questions and answers
+* As a user, I want to be able to view my score from each time I use the application
