@@ -1,13 +1,11 @@
 # My Personal Project
 
 ## Project Proposal
-This application will allow users to create a set of questions and answers for the purpose of studying. Users will be
-able to input questions and answers. Running the program will display the set of questions, so users can answer them
-and receive a score for each question as well as a total score. Students will be the main users of this application as
-its main purpose is for studying and reinforcing memorization. Students will be able to:
-* add *and* delete questions/answers
-* modify existing questions/answers
-* view their scores at the end of a user session
+This application will allow users to create a set of flash cards. Running the program will display questions one at a
+time, and users can choose to display the answer and flag the question at any time. The main users of this application
+will be students because they will be able to create flash cards for studying. Users will be able to:
+* add *and* delete flash cards
+* flag flash cards for future reference
 
 This project is of interest to me because as a student who is always working on finding
 helpful study techniques, I have considered but have not yet tried flashcards and other methods that
@@ -17,7 +15,7 @@ questions will help me even more with remembering how to answer them, and other 
 as well.
 
 ## User Stories
-* As a user, I want to be able to add a question and an associated answer to the set
-* As a user, I want to be able to delete a question and its answer from the set
-* As a user, I want to be able to modify existing questions and answers
-* As a user, I want to be able to view my score from each time I use the application
+* As a user, I want to be able to add a flash card to the set
+* As a user, I want to be able to delete a flash card from the set
+* As a user, I want to be able to flag important flash cards and view them separately
+* As a user, I want to be able to display answers at any time
