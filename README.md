@@ -13,7 +13,8 @@ questions will help me even more with remembering how to answer them, and other 
 as well.
 
 ## User Stories
-* As a user, I want to be able to add and/or delete a flash card to/from the quiz, an arbitrary number of times.
-* As a user, I want to be able to flag flash cards and have them in a separate quiz.
+* As a user, I want to be able to add a flash card to the quiz an arbitrary number of times.
+* As a user, I want to be able to delete a flash card from the quiz.
+* As a user, I want to be able to mark flash cards as "flagged" and have them in a separate quiz.
 * As a user, I want to be able to view all of my flash cards and view all of my flagged flash cards in a list.
 * As a user, I want to be able to display each question one by one and then view the answer when I am ready to do so.
