@@ -36,6 +36,8 @@ class QuizTest {
         assertEquals(testCard2, testQuizFlagged.get(0));
         assertEquals(2, testQuiz.size());
         assertEquals(1, testQuizFlagged.size());
+        assertEquals(2, testQuizAll.getQuiz().size());
+        assertEquals(1, testQuizAll.getQuizFlagged().size());
     }
 
     @Test
@@ -46,12 +48,12 @@ class QuizTest {
         assertEquals(4, testQuizAll.getQuizSize());
         assertEquals(2, testQuizAll.getQuizFlaggedSize());
 
-        assertEquals(testCard1, testQuiz.get(0));
-        assertEquals(testCard2, testQuiz.get(1));
-        assertEquals(testCard3, testQuiz.get(2));
-        assertEquals(testCard4, testQuiz.get(3));
-        assertEquals(testCard2, testQuizFlagged.get(0));
-        assertEquals(testCard4, testQuizFlagged.get(1));
+        assertEquals(testCard1, testQuizAll.getFlashCard(0));
+        assertEquals(testCard2, testQuizAll.getFlashCard(1));
+        assertEquals(testCard3, testQuizAll.getFlashCard(2));
+        assertEquals(testCard4, testQuizAll.getFlashCard(3));
+        assertEquals(testCard2, testQuizAll.getFlaggedFlashCard(0));
+        assertEquals(testCard4, testQuizAll.getFlaggedFlashCard(1));
     }
 
     @Test
@@ -67,6 +69,20 @@ class QuizTest {
         assertEquals(testCard3, testQuiz.get(0));
         assertEquals(testCard4, testQuiz.get(1));
         assertEquals(testCard4, testQuizFlagged.get(0));
+    }
+
+    @Test
+    void testViewFlashCards() {
+        assertEquals("0: Question: \"1+1\"\n\t   Answer:   \"2\"\n\t   Flagged:  false",
+                testQuizAll.viewFlashCards().get(0));
+        assertEquals("1: Question: \"3*5\"\n\t   Answer:   \"15\"\n\t   Flagged:  true",
+                testQuizAll.viewFlashCards().get(1));
+    }
+
+    @Test
+    void testViewFlaggedFlashCards() {
+        assertEquals("0: Question: \"3*5\"\n\t   Answer:   \"15\"\n\t   Flagged:  true",
+                testQuizAll.viewFlaggedFlashCards().get(0));
     }
 
 }

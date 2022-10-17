@@ -12,23 +12,23 @@ public class FlashCardTest {
 
     @BeforeEach
     void runBefore() {
-        testCard1 = new FlashCard("1+1","2",true);
-        testCard2 = new FlashCard("3*5", "15",false);
+        testCard1 = new FlashCard("1+1","2",false);
+        testCard2 = new FlashCard("3*5", "15",true);
     }
 
     @Test
     void testConstructor() {
         assertEquals("1+1", testCard1.getQuestion());
         assertEquals("2", testCard1.getAnswer());
-        assertTrue(testCard1.getIsFlagged());
+        assertFalse(testCard1.getIsFlagged());
         assertEquals("3*5", testCard2.getQuestion());
         assertEquals("15", testCard2.getAnswer());
-        assertFalse(testCard2.getIsFlagged());
+        assertTrue(testCard2.getIsFlagged());
     }
 
     @Test
     void testFlashCardToString() {
         assertTrue(testCard1.flashCardToString().contains("Question: \"1+1\"\n\t   " +
-                "Answer:   \"2\"\n\t   Flagged:  true"));
+                "Answer:   \"2\"\n\t   Flagged:  false"));
     }
 }

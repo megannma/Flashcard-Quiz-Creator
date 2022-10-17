@@ -106,7 +106,7 @@ public class QuizApp {
         System.out.println("Enter the index of the flash card you want to delete: ");
         int i = input.nextInt();
 
-        FlashCard flashCard = userQuiz.getQuiz().get(i);
+        FlashCard flashCard = userQuiz.getFlashCard(i);
 
         userQuiz.deleteFlashCard(flashCard);
         System.out.println("Deleted!");
