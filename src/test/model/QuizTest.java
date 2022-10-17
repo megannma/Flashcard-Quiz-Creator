@@ -13,8 +13,8 @@ class QuizTest {
     private FlashCard testCard2;
     private FlashCard testCard3;
     private FlashCard testCard4;
-    private Quiz testQuizAll;
-    private List<FlashCard> testQuiz;
+    private Quiz testQuiz;
+    private List<FlashCard> testMainQuiz;
     private List<FlashCard> testQuizFlagged;
 
     @BeforeEach
@@ -23,66 +23,65 @@ class QuizTest {
         testCard2 = new FlashCard("3*5","15",true);
         testCard3 = new FlashCard("4^2","16",false);
         testCard4 = new FlashCard("2-1", "1", true);
-        testQuiz = new ArrayList<>();
+        testMainQuiz = new ArrayList<>();
         testQuizFlagged = new ArrayList<>();
-        testQuizAll = new Quiz(testQuiz, testQuizFlagged);
-        testQuizAll.addFlashCard(testCard1);
-        testQuizAll.addFlashCard(testCard2);
+        testQuiz = new Quiz(testMainQuiz, testQuizFlagged);
+        testQuiz.addFlashCard(testCard1);
+        testQuiz.addFlashCard(testCard2);
     }
 
     @Test
     void testConstructor() {
-        assertEquals(testCard1, testQuiz.get(0));
+        assertEquals(testCard1, testMainQuiz.get(0));
         assertEquals(testCard2, testQuizFlagged.get(0));
-        assertEquals(2, testQuiz.size());
+        assertEquals(2, testMainQuiz.size());
         assertEquals(1, testQuizFlagged.size());
-        assertEquals(2, testQuizAll.getQuiz().size());
-        assertEquals(1, testQuizAll.getQuizFlagged().size());
+        assertEquals(2, testQuiz.getMainQuiz().size());
+        assertEquals(1, testQuiz.getFlaggedQuiz().size());
     }
 
     @Test
     void testAddFlashCard() {
-        testQuizAll.addFlashCard(testCard3);
-        testQuizAll.addFlashCard(testCard4);
+        testQuiz.addFlashCard(testCard3);
+        testQuiz.addFlashCard(testCard4);
 
-        assertEquals(4, testQuizAll.getQuizSize());
-        assertEquals(2, testQuizAll.getQuizFlaggedSize());
+        assertEquals(4, testQuiz.getMainQuizSize());
+        assertEquals(2, testQuiz.getQuizFlaggedSize());
 
-        assertEquals(testCard1, testQuizAll.getFlashCard(0));
-        assertEquals(testCard2, testQuizAll.getFlashCard(1));
-        assertEquals(testCard3, testQuizAll.getFlashCard(2));
-        assertEquals(testCard4, testQuizAll.getFlashCard(3));
-        assertEquals(testCard2, testQuizAll.getFlaggedFlashCard(0));
-        assertEquals(testCard4, testQuizAll.getFlaggedFlashCard(1));
+        assertEquals(testCard1, testQuiz.getFlashCard(0));
+        assertEquals(testCard2, testQuiz.getFlashCard(1));
+        assertEquals(testCard3, testQuiz.getFlashCard(2));
+        assertEquals(testCard4, testQuiz.getFlashCard(3));
+        assertEquals(testCard2, testQuiz.getFlaggedFlashCard(0));
+        assertEquals(testCard4, testQuiz.getFlaggedFlashCard(1));
     }
 
     @Test
     void testDeleteFlashCard() {
-        testQuizAll.addFlashCard(testCard3);
-        testQuizAll.addFlashCard(testCard4);
-        testQuizAll.deleteFlashCard(testCard1);
-        testQuizAll.deleteFlashCard(testCard2);
+        testQuiz.addFlashCard(testCard3);
+        testQuiz.addFlashCard(testCard4);
+        testQuiz.deleteFlashCard(testCard1);
+        testQuiz.deleteFlashCard(testCard2);
 
-        assertEquals(2, testQuizAll.getQuizSize());
-        assertEquals(1, testQuizAll.getQuizFlaggedSize());
+        assertEquals(2, testQuiz.getMainQuizSize());
+        assertEquals(1, testQuiz.getQuizFlaggedSize());
 
-        assertEquals(testCard3, testQuiz.get(0));
-        assertEquals(testCard4, testQuiz.get(1));
+        assertEquals(testCard3, testMainQuiz.get(0));
+        assertEquals(testCard4, testMainQuiz.get(1));
         assertEquals(testCard4, testQuizFlagged.get(0));
     }
 
     @Test
     void testViewFlashCards() {
         assertEquals("0: Question: \"1+1\"\n\t   Answer:   \"2\"\n\t   Flagged:  false",
-                testQuizAll.viewFlashCards().get(0));
+                testQuiz.viewFlashCards().get(0));
         assertEquals("1: Question: \"3*5\"\n\t   Answer:   \"15\"\n\t   Flagged:  true",
-                testQuizAll.viewFlashCards().get(1));
+                testQuiz.viewFlashCards().get(1));
     }
 
     @Test
     void testViewFlaggedFlashCards() {
         assertEquals("0: Question: \"3*5\"\n\t   Answer:   \"15\"\n\t   Flagged:  true",
-                testQuizAll.viewFlaggedFlashCards().get(0));
+                testQuiz.viewFlaggedFlashCards().get(0));
     }
-
 }

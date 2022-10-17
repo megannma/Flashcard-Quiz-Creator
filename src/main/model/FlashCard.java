@@ -1,12 +1,11 @@
 package model;
 
+//Represents a flash card having a question, answer, and flag status
 public class FlashCard {
-    private final String question;
-    private final String answer;
-    private final boolean isFlagged;
+    private String question;
+    private String answer;
+    private boolean isFlagged;
 
-    // REQUIRES: question and answer must not be null
-    // MODIFIES: creates a new flash card with the given information
     // EFFECTS: question is set to user given question
     //          answer is set to user given answer
     //          isFlagged is set to true or false depending on if user chooses to flag the flash card
@@ -16,7 +15,7 @@ public class FlashCard {
         isFlagged = hasBeenFlagged;
     }
 
-    // EFFECTS: returns a flash card as a string, in a format that is easier to read
+    // EFFECTS: returns a flash card as a string, in a format that is easier for users to read
     public String flashCardToString() {
         return "Question: " + "\"" + question + "\"\n"
                 + "\t   Answer:   " + "\"" + answer + "\"\n"
@@ -31,7 +30,7 @@ public class FlashCard {
         return answer;
     }
 
-    public boolean getIsFlagged() {
+    public boolean hasFlag() {
         return isFlagged;
     }
 }

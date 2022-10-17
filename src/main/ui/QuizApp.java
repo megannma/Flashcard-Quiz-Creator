@@ -8,12 +8,13 @@ import java.util.Collections;
 import java.util.Scanner;
 
 //Quiz Application
-//Disclaimer: I am citing TellerApp because I have referenced it to design and create the UI, such as the
-//            runQuizApp(), setUp(), doCommand(), and displayCommands() methods.
+//Disclaimer: I am citing TellerApp because I have referenced it to design the UI, such as the constructor QuizApp()
+//            and the methods runQuizApp(), setUp(), doCommand(), and displayCommands().
 public class QuizApp {
     private Quiz userQuiz;
     private Scanner input;
 
+    //EFFECTS: runs the quiz application
     public QuizApp() {
         runQuizApp();
     }
@@ -77,18 +78,18 @@ public class QuizApp {
         System.out.println("\t3: View all flash cards");
         System.out.println("\t4: View all flagged flash cards");
         System.out.println("\t5: Run through quiz with flash cards");
-        System.out.println("\t6: Run through quiz with FLAGGED flash cards");
+        System.out.println("\t6: Run through quiz with flagged flash cards");
         System.out.println("\t7: Quit application");
     }
 
     //MODIFIES: this
-    //EFFECTS: adds a flash card to the quiz
+    //EFFECTS: adds a flash card to the quiz; if flagged, adds it to the flagged flash cards quiz
     private void doAddFlashCard() {
-        System.out.println("Enter the question for your flash card: ");
+        System.out.println("Enter the question for your flash card:");
         String question = input.next();
-        System.out.println("Enter the answer for your flash card: ");
+        System.out.println("Enter the answer for your flash card:");
         String answer = input.next();
-        System.out.println("Do you want to flag your flash card? Enter \"true\" if yes: ");
+        System.out.println("Do you want to flag your flash card? Enter \"true\" if yes:");
         String flag = input.next();
         boolean hasFlag = Boolean.parseBoolean(flag);
         //Method used to convert user input to boolean is from
@@ -100,10 +101,11 @@ public class QuizApp {
         System.out.println("Added!");
     }
 
+    //REQUIRES: user does not input index larger than actual index
     //MODIFIES: this
-    //EFFECTS: deletes a flash card from the quiz
+    //EFFECTS: deletes a flash card from the quiz; if flagged, deletes it from the flagged flash cards quiz
     private void doDeleteFlashCard() {
-        System.out.println("Enter the index of the flash card you want to delete: ");
+        System.out.println("Enter the index of the flash card you want to delete:");
         int i = input.nextInt();
 
         FlashCard flashCard = userQuiz.getFlashCard(i);
@@ -115,7 +117,7 @@ public class QuizApp {
     //EFFECTS: displays all flash cards
     private void doViewAllFlashCards() {
         System.out.println("---ALL FLASH CARDS---");
-        for (int i = 0; i < userQuiz.getQuizSize(); i++) {
+        for (int i = 0; i < userQuiz.getMainQuizSize(); i++) {
             System.out.println("\t" + userQuiz.viewFlashCards().get(i));
         }
         System.out.println("----------");
@@ -134,28 +136,32 @@ public class QuizApp {
     //EFFECTS: displays each flash card question one by one in a random order,
     //         and displays answer when user prompts it to do so
     private void runThroughQuiz() {
-        System.out.println("Quiz starts now! To display the answer and proceed to the next flash card, enter any key.");
-        Collections.shuffle(userQuiz.getQuiz());
+        System.out.println("Quiz starts now! Enter your answer or anything else to display the correct answer,"
+                + "and the next question will be displayed after.");
+        Collections.shuffle(userQuiz.getMainQuiz());
         //Method used for randomizing the flash cards is from
         //https://www.tutorialspoint.com/shuffle-elements-of-arraylist-with-java-collections
-        for (int i = 0; i < userQuiz.getQuizSize(); i++) {
-            System.out.println("Q: " + userQuiz.getFlashCard(i).getQuestion());
+        for (int i = 0; i < userQuiz.getMainQuizSize(); i++) {
+            System.out.println("Question: " + userQuiz.getFlashCard(i).getQuestion());
             input.next();
-            System.out.println("A: " + userQuiz.getFlashCard(i).getAnswer());
+            System.out.println("Correct Answer: " + userQuiz.getFlashCard(i).getAnswer());
         }
         System.out.println("Quiz ended!");
     }
 
     //MODIFIES: this
-    //EFFECTS: displays each flash card question one by one in a random order,
+    //EFFECTS: displays each flagged flash card question one by one in a random order,
     //         and displays answer when user prompts it to do so
     private void runThroughFlaggedQuiz() {
-        System.out.println("Quiz starts now! To display the answer and proceed to the next flash card, enter any key.");
-        Collections.shuffle(userQuiz.getQuizFlagged());
+        System.out.println("Quiz starts now! Enter your answer or anything else to display the correct answer,"
+                + "and the next question will be displayed after.");
+        Collections.shuffle(userQuiz.getFlaggedQuiz());
+        //Method used for randomizing the flash cards is from
+        //https://www.tutorialspoint.com/shuffle-elements-of-arraylist-with-java-collections
         for (int i = 0; i < userQuiz.getQuizFlaggedSize(); i++) {
-            System.out.println("Q: " + userQuiz.getFlaggedFlashCard(i).getQuestion());
+            System.out.println("Question: " + userQuiz.getFlaggedFlashCard(i).getQuestion());
             input.next();
-            System.out.println("A: " + userQuiz.getFlaggedFlashCard(i).getAnswer());
+            System.out.println("Correct Answer: " + userQuiz.getFlaggedFlashCard(i).getAnswer());
         }
         System.out.println("Quiz ended!");
     }

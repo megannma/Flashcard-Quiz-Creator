@@ -20,10 +20,10 @@ public class FlashCardTest {
     void testConstructor() {
         assertEquals("1+1", testCard1.getQuestion());
         assertEquals("2", testCard1.getAnswer());
-        assertFalse(testCard1.getIsFlagged());
+        assertFalse(testCard1.hasFlag());
         assertEquals("3*5", testCard2.getQuestion());
         assertEquals("15", testCard2.getAnswer());
-        assertTrue(testCard2.getIsFlagged());
+        assertTrue(testCard2.hasFlag());
     }
 
     @Test

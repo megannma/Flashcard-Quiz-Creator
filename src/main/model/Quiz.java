@@ -3,77 +3,84 @@ package model;
 import java.util.ArrayList;
 import java.util.List;
 
+//Represents a quiz containing a main quiz of all flash cards, and a flagged quiz of all flagged flash cards
 public class Quiz {
-    private final List<FlashCard> quiz;
-    private final List<FlashCard> quizFlagged;
+    private List<FlashCard> mainQuiz;
+    private List<FlashCard> flaggedQuiz;
 
-    public Quiz(List<FlashCard> newQuiz, List<FlashCard> newQuizFlagged) {
-        quiz = newQuiz;
-        quizFlagged = newQuizFlagged;
+    //EFFECTS: mainQuiz is set to an empty list of flash cards
+    //         flaggedQuiz is set to an empty list of flash cards
+    public Quiz(List<FlashCard> newQuiz, List<FlashCard> newFlaggedQuiz) {
+        mainQuiz = newQuiz;
+        flaggedQuiz = newFlaggedQuiz;
     }
 
-    // MODIFIES: this
-    // EFFECTS: adds a flash card to the quiz, and adds it to the flagged quiz if it is flagged
+    //MODIFIES: this
+    //EFFECTS: adds a flash card to the quiz, and adds it to the flagged quiz if it is flagged
     public void addFlashCard(FlashCard f) {
-        if (f.getIsFlagged()) {
-            quizFlagged.add(f);
+        if (f.hasFlag()) {
+            flaggedQuiz.add(f);
         }
-        quiz.add(f);
+        mainQuiz.add(f);
     }
 
-    // REQUIRES: quiz is not empty
-    // MODIFIES: this
-    // EFFECTS: deletes a flash card from the quiz, and deletes it from the flagged quiz if it is flagged
+    //REQUIRES: quiz is not empty
+    //MODIFIES: this
+    //EFFECTS: deletes a flash card from the quiz, and deletes it from the flagged quiz if it is flagged
     public void deleteFlashCard(FlashCard f) {
-        if (f.getIsFlagged()) {
-            quizFlagged.remove(f);
+        if (f.hasFlag()) {
+            flaggedQuiz.remove(f);
         }
-        quiz.remove(f);
+        mainQuiz.remove(f);
     }
 
-    // REQUIRES: quiz contains at least one flash card
-    // EFFECTS: returns a list of all flash cards, in order
+    //REQUIRES: quiz contains at least one flash card
+    //EFFECTS: returns a list of all flash cards as strings, in order
     public List<String> viewFlashCards() {
         List<String> allFlashCards = new ArrayList<>();
-        for (int i = 0; i < quiz.size(); i++) {
-            String s = i + ": " + quiz.get(i).flashCardToString();
+        for (int i = 0; i < mainQuiz.size(); i++) {
+            String s = i + ": " + mainQuiz.get(i).flashCardToString();
             allFlashCards.add(s);
         }
         return allFlashCards;
     }
 
-    // REQUIRES: user has flagged at least one flash card
-    // EFFECTS: returns a list of all flagged flash cards, in order
+    //REQUIRES: user has flagged at least one flash card
+    //EFFECTS: returns a list of all flagged flash cards as strings, in order
     public List<String> viewFlaggedFlashCards() {
         List<String> allFlaggedFlashCards = new ArrayList<>();
-        for (int i = 0; i < quizFlagged.size(); i++) {
-            String s = i + ": " + quizFlagged.get(i).flashCardToString();
+        for (int i = 0; i < flaggedQuiz.size(); i++) {
+            String s = i + ": " + flaggedQuiz.get(i).flashCardToString();
             allFlaggedFlashCards.add(s);
         }
         return allFlaggedFlashCards;
     }
 
-    public List<FlashCard> getQuiz() {
-        return quiz;
+    public List<FlashCard> getMainQuiz() {
+        return mainQuiz;
     }
 
-    public List<FlashCard> getQuizFlagged() {
-        return quizFlagged;
+    public List<FlashCard> getFlaggedQuiz() {
+        return flaggedQuiz;
     }
 
-    public int getQuizSize() {
-        return quiz.size();
-    }
-
-    public int getQuizFlaggedSize() {
-        return quizFlagged.size();
-    }
-
+    //EFFECTS: returns the flash card with the given index
     public FlashCard getFlashCard(int i) {
-        return quiz.get(i);
+        return mainQuiz.get(i);
     }
 
+    //EFFECTS: returns the flagged flash card with the given index
     public FlashCard getFlaggedFlashCard(int i) {
-        return quizFlagged.get(i);
+        return flaggedQuiz.get(i);
+    }
+
+    //EFFECTS: returns the size of the main quiz
+    public int getMainQuizSize() {
+        return mainQuiz.size();
+    }
+
+    //EFFECTS: returns the size of the flagged quiz
+    public int getQuizFlaggedSize() {
+        return flaggedQuiz.size();
     }
 }
