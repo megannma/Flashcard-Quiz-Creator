@@ -18,3 +18,5 @@ as well.
 * As a user, I want to be able to mark flash cards as "flagged" and have them in a separate quiz.
 * As a user, I want to be able to view all of my flash cards and view all of my flagged flash cards in a list.
 * As a user, I want to be able to display each question one by one and then view the answer when I am ready to do so.
+* As a user, I want to be able to save my set of flash cards to file.
+* As a user, I want to be able to load my set of flash cards from file.
