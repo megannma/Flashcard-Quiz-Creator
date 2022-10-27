@@ -2,7 +2,7 @@ package persistence;
 
 import model.FlashCard;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class JsonTest {
     protected void checkFlashCard(String question, String answer, boolean isFlagged, FlashCard flashCard) {
