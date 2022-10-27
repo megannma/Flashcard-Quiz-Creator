@@ -6,7 +6,7 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class FlashCardTest {
+class FlashCardTest {
     private FlashCard testCard1;
     private FlashCard testCard2;
 

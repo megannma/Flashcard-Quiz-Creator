@@ -2,8 +2,11 @@ package ui;
 
 import model.FlashCard;
 import model.Quiz;
+import persistence.JsonReader;
+import persistence.JsonWriter;
 
-import java.util.ArrayList;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.Collections;
 import java.util.Scanner;
 
@@ -11,11 +14,14 @@ import java.util.Scanner;
 //Disclaimer: I am citing TellerApp because I have referenced it to design the UI, such as the constructor QuizApp()
 //            and the methods runQuizApp(), setUp(), doCommand(), and displayCommands().
 public class QuizApp {
+    private static final String JSON_STORE = "./data/quiz.json";
     private Quiz userQuiz;
     private Scanner input;
+    private JsonWriter jsonWriter;
+    private JsonReader jsonReader;
 
     //EFFECTS: runs the quiz application
-    public QuizApp() {
+    public QuizApp() throws FileNotFoundException {
         runQuizApp();
     }
 
@@ -33,7 +39,7 @@ public class QuizApp {
             displayCommands();
             command = input.next();
 
-            if (command.equals("7")) {
+            if (command.equals("9")) {
                 run = false;
             } else {
                 doCommand(command);
@@ -45,9 +51,11 @@ public class QuizApp {
     //MODIFIES: this
     //EFFECTS: sets up quiz and input
     private void setUp() {
-        userQuiz = new Quiz(new ArrayList<>(), new ArrayList<>());
+        userQuiz = new Quiz();
         input = new Scanner(System.in);
         input.useDelimiter("\n");
+        jsonWriter = new JsonWriter(JSON_STORE);
+        jsonReader = new JsonReader(JSON_STORE);
     }
 
     //MODIFIES: this
@@ -65,6 +73,10 @@ public class QuizApp {
             runThroughQuiz();
         } else if (command.equals("6")) {
             runThroughFlaggedQuiz();
+        } else if (command.equals("7")) {
+            saveQuiz();
+        } else if (command.equals("8")) {
+            loadQuiz();
         } else {
             System.out.println("Invalid command.");
         }
@@ -79,7 +91,9 @@ public class QuizApp {
         System.out.println("\t4: View all flagged flash cards");
         System.out.println("\t5: Run through quiz with flash cards");
         System.out.println("\t6: Run through quiz with flagged flash cards");
-        System.out.println("\t7: Quit application");
+        System.out.println("\t7: Load quiz to file.");
+        System.out.println("\t8: Load quiz from file.");
+        System.out.println("\t9: Quit application");
     }
 
     //MODIFIES: this
@@ -164,5 +178,28 @@ public class QuizApp {
             System.out.println("Correct Answer: " + userQuiz.getFlaggedFlashCard(i).getAnswer());
         }
         System.out.println("Quiz ended!");
+    }
+
+    //EFFECTS: saves the quiz to file
+    private void saveQuiz() {
+        try {
+            jsonWriter.open();
+            jsonWriter.write(userQuiz);
+            jsonWriter.close();
+            System.out.println("Saved quiz to " + JSON_STORE);
+        } catch (FileNotFoundException e) {
+            System.out.println("Unable to write to file: " + JSON_STORE);
+        }
+    }
+
+    //MODIFIES: this
+    //EFFECTS: loads quiz from file
+    private void loadQuiz() {
+        try {
+            userQuiz = jsonReader.read();
+            System.out.println("Loaded quiz from " + JSON_STORE);
+        } catch (IOException e) {
+            System.out.println("Unable to read from file: " + JSON_STORE);
+        }
     }
 }

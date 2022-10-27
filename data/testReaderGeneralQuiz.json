@@ -1,0 +1,19 @@
+{
+    "flagged quiz": [{
+        "question": "Test Q2",
+        "answer": "Test A2",
+        "flagged": true
+    }],
+    "main quiz": [
+        {
+            "question": "Test Q1",
+            "answer": "Test A1",
+            "flagged": false
+        },
+        {
+            "question": "Test Q2",
+            "answer": "Test A2",
+            "flagged": true
+        }
+    ]
+}

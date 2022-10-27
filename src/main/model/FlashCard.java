@@ -1,7 +1,10 @@
 package model;
 
+import org.json.JSONObject;
+import persistence.Writable;
+
 //Represents a flash card having a question, answer, and flag status
-public class FlashCard {
+public class FlashCard implements Writable {
     private String question;
     private String answer;
     private boolean isFlagged;
@@ -32,5 +35,15 @@ public class FlashCard {
 
     public boolean hasFlag() {
         return isFlagged;
+    }
+
+    //Method taken from Thingy in JsonSerializationDemo
+    @Override
+    public JSONObject toJson() {
+        JSONObject json = new JSONObject();
+        json.put("question", question);
+        json.put("answer", answer);
+        json.put("flagged", isFlagged);
+        return json;
     }
 }

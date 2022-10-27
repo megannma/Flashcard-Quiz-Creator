@@ -14,8 +14,6 @@ class QuizTest {
     private FlashCard testCard3;
     private FlashCard testCard4;
     private Quiz testQuiz;
-    private List<FlashCard> testMainQuiz;
-    private List<FlashCard> testQuizFlagged;
 
     @BeforeEach
     void runBefore() {
@@ -23,19 +21,17 @@ class QuizTest {
         testCard2 = new FlashCard("3*5","15",true);
         testCard3 = new FlashCard("4^2","16",false);
         testCard4 = new FlashCard("2-1", "1", true);
-        testMainQuiz = new ArrayList<>();
-        testQuizFlagged = new ArrayList<>();
-        testQuiz = new Quiz(testMainQuiz, testQuizFlagged);
+        testQuiz = new Quiz();
         testQuiz.addFlashCard(testCard1);
         testQuiz.addFlashCard(testCard2);
     }
 
     @Test
     void testConstructor() {
-        assertEquals(testCard1, testMainQuiz.get(0));
-        assertEquals(testCard2, testQuizFlagged.get(0));
-        assertEquals(2, testMainQuiz.size());
-        assertEquals(1, testQuizFlagged.size());
+        assertEquals(testCard1, testQuiz.getFlashCard(0));
+        assertEquals(testCard2, testQuiz.getFlaggedFlashCard(0));
+        assertEquals(2, testQuiz.getMainQuizSize());
+        assertEquals(1,testQuiz.getQuizFlaggedSize());
         assertEquals(2, testQuiz.getMainQuiz().size());
         assertEquals(1, testQuiz.getFlaggedQuiz().size());
     }
@@ -66,9 +62,9 @@ class QuizTest {
         assertEquals(2, testQuiz.getMainQuizSize());
         assertEquals(1, testQuiz.getQuizFlaggedSize());
 
-        assertEquals(testCard3, testMainQuiz.get(0));
-        assertEquals(testCard4, testMainQuiz.get(1));
-        assertEquals(testCard4, testQuizFlagged.get(0));
+        assertEquals(testCard3, testQuiz.getFlashCard(0));
+        assertEquals(testCard4, testQuiz.getFlashCard(1));
+        assertEquals(testCard4, testQuiz.getFlaggedFlashCard(0));
     }
 
     @Test

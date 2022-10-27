@@ -1,18 +1,22 @@
 package model;
 
+import org.json.JSONArray;
+import org.json.JSONObject;
+import persistence.Writable;
+
 import java.util.ArrayList;
 import java.util.List;
 
 //Represents a quiz containing a main quiz of all flash cards, and a flagged quiz of all flagged flash cards
-public class Quiz {
+public class Quiz implements Writable {
     private List<FlashCard> mainQuiz;
     private List<FlashCard> flaggedQuiz;
 
     //EFFECTS: mainQuiz is set to an empty list of flash cards
     //         flaggedQuiz is set to an empty list of flash cards
-    public Quiz(List<FlashCard> newQuiz, List<FlashCard> newFlaggedQuiz) {
-        mainQuiz = newQuiz;
-        flaggedQuiz = newFlaggedQuiz;
+    public Quiz() {
+        mainQuiz = new ArrayList<>();
+        flaggedQuiz = new ArrayList<>();
     }
 
     //MODIFIES: this
@@ -82,5 +86,25 @@ public class Quiz {
     //EFFECTS: returns the size of the flagged quiz
     public int getQuizFlaggedSize() {
         return flaggedQuiz.size();
+    }
+
+    //Method taken from WorkRoom in JsonSerializationDemo
+    @Override
+    public JSONObject toJson() {
+        JSONObject json = new JSONObject();
+        json.put("main quiz", quizToJson());
+        return json;
+    }
+
+    //EFFECTS: returns flash cards in main quiz as a JSON array
+    //Method taken from WorkRoom in JsonSerializationDemo
+    private JSONArray quizToJson() {
+        JSONArray jsonArray = new JSONArray();
+
+        for (FlashCard f : mainQuiz) {
+            jsonArray.put(f.toJson());
+        }
+
+        return jsonArray;
     }
 }
