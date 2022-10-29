@@ -13,6 +13,7 @@ import java.util.Scanner;
 //Quiz Application
 //Disclaimer: I am citing TellerApp because I have referenced it to design the UI, such as the constructor QuizApp()
 //            and the methods runQuizApp(), setUp(), doCommand(), and displayCommands().
+
 public class QuizApp {
     private static final String JSON_STORE = "./data/quiz.json";
     private Quiz userQuiz;
@@ -181,6 +182,8 @@ public class QuizApp {
     }
 
     //EFFECTS: saves the quiz to file
+    //Referenced method saveWorkRoom() from WorkRoomApp in JsonSerializationDemo at
+    //https://github.students.cs.ubc.ca/CPSC210/JsonSerializationDemo.git
     private void saveQuiz() {
         try {
             jsonWriter.open();
@@ -194,6 +197,8 @@ public class QuizApp {
 
     //MODIFIES: this
     //EFFECTS: loads quiz from file
+    //Referenced method loadWorkRoom() from WorkRoomApp in JsonSerializationDemo at
+    //https://github.students.cs.ubc.ca/CPSC210/JsonSerializationDemo.git
     private void loadQuiz() {
         try {
             userQuiz = jsonReader.read();

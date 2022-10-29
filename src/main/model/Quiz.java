@@ -88,7 +88,9 @@ public class Quiz implements Writable {
         return flaggedQuiz.size();
     }
 
-    //Method taken from WorkRoom in JsonSerializationDemo
+    //EFFECTS: returns quiz as a JSON object
+    //Referenced method toJson() from WorkRoom in JsonSerializationDemo at
+    //https://github.students.cs.ubc.ca/CPSC210/JsonSerializationDemo.git
     @Override
     public JSONObject toJson() {
         JSONObject json = new JSONObject();
@@ -97,7 +99,8 @@ public class Quiz implements Writable {
     }
 
     //EFFECTS: returns flash cards in main quiz as a JSON array
-    //Method taken from WorkRoom in JsonSerializationDemo
+    //Referenced method thingiesToJson() from WorkRoom in JsonSerializationDemo at
+    //https://github.students.cs.ubc.ca/CPSC210/JsonSerializationDemo.git
     private JSONArray quizToJson() {
         JSONArray jsonArray = new JSONArray();
 

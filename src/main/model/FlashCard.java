@@ -37,7 +37,9 @@ public class FlashCard implements Writable {
         return isFlagged;
     }
 
-    //Method taken from Thingy in JsonSerializationDemo
+    //EFFECTS: returns a flash card as a JSON object
+    //Referenced method toJson() from Thingy in JsonSerializationDemo at
+    //https://github.students.cs.ubc.ca/CPSC210/JsonSerializationDemo.git
     @Override
     public JSONObject toJson() {
         JSONObject json = new JSONObject();

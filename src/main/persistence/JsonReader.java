@@ -12,7 +12,8 @@ import java.nio.file.Paths;
 import java.util.stream.Stream;
 
 //Represents a reader that reads quiz from JSON data stored in file
-//Disclaimer: I am citing JsonSerializationDemo because I have referenced it to design this class
+//Referenced JsonReader class in JsonSerializationDemo at
+//https://github.students.cs.ubc.ca/CPSC210/JsonSerializationDemo.git
 public class JsonReader {
     private String source;
 
