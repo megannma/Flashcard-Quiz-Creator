@@ -1,17 +1,5 @@
-{"main quiz": [
-    {
-        "question": "test question 1",
-        "answer": "test answer 1",
-        "flagged": true
-    },
-    {
-        "question": "test question 2",
-        "answer": "test answer 2",
-        "flagged": false
-    },
-    {
-        "question": "test question 3",
-        "answer": "test answer 3",
-        "flagged": true
-    }
-]}
+{"main quiz": [{
+    "question": "",
+    "answer": "",
+    "flagged": false
+}]}
