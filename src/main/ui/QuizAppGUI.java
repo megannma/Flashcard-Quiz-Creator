@@ -13,11 +13,12 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 
 //Quiz Application GUI
-//Referenced IntersectionGUI in C3-LectureLabStarter
+//Referenced IntersectionGUI in C3-LectureLabStarter at https://github.students.cs.ubc.ca/CPSC210/C3-LectureLabStarter
 //Referenced https://docs.oracle.com/javase/tutorial/uiswing/examples/components/index.html for swing components
 public class QuizAppGUI extends JFrame {
     private Quiz quiz;
     private static final String JSON_STORE = "./data/quiz.json";
+    private Dimension dimension = new Dimension(800,400);
     private JsonWriter jsonWriter;
     private JsonReader jsonReader;
     private ImageIcon saveSuccess;
@@ -26,14 +27,14 @@ public class QuizAppGUI extends JFrame {
     private ImageIcon loadFail;
     private ImageIcon added;
     private ImageIcon deleted;
-    private String[] commands = {"Select", "Add flash card", "Delete flash card",
+    private String[] commands = {"Select here", "Add flash card", "Delete flash card",
             "View all flash cards", "View all flagged flash cards"};
 
-    // EFFECTS: runs the quiz application
+    //EFFECTS: runs the quiz application
     public QuizAppGUI() throws FileNotFoundException {
         super("Quiz App UI");
         setLayout(new GridLayout(3, 1));
-        setPreferredSize(new Dimension(800, 400));
+        setPreferredSize(dimension);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         createQuizApp();
         createCommandMenu();
@@ -59,7 +60,7 @@ public class QuizAppGUI extends JFrame {
             jsonWriter.write(quiz);
             jsonWriter.close();
             JFrame frame = new JFrame("Saved quiz to " + JSON_STORE);
-            frame.setPreferredSize(new Dimension(800,400));
+            frame.setPreferredSize(dimension);
             loadImages();
             frame.add(new JLabel(saveSuccess));
             frame.pack();
@@ -81,7 +82,7 @@ public class QuizAppGUI extends JFrame {
         try {
             quiz = jsonReader.read();
             JFrame frame = new JFrame("Loaded quiz from  " + JSON_STORE);
-            frame.setPreferredSize(new Dimension(800,400));
+            frame.setPreferredSize(dimension);
             loadImages();
             frame.add(new JLabel(loadSuccess));
             frame.pack();
@@ -116,7 +117,7 @@ public class QuizAppGUI extends JFrame {
     //EFFECTS: adds a flash the quiz; if flagged, adds it to the flagged flash cards quiz
     private void doAddFlashCard() {
         JFrame addFrame = new JFrame("Add flash card");
-        addFrame.setPreferredSize(new Dimension(800, 400));
+        addFrame.setPreferredSize(dimension);
         addFrame.setLayout(new GridLayout(4, 2));
         JTextField questionField = new JTextField(1);
         JTextField answerField = new JTextField(1);
@@ -136,7 +137,7 @@ public class QuizAppGUI extends JFrame {
     //EFFECTS: displays a popup window to confirm user has added a flash card
     private void confirmAdd() {
         JFrame frame = new JFrame("Added!");
-        frame.setPreferredSize(new Dimension(800,400));
+        frame.setPreferredSize(dimension);
         loadImages();
         frame.add(new JLabel(added));
         frame.pack();
@@ -149,7 +150,7 @@ public class QuizAppGUI extends JFrame {
     private void doDeleteFlashCard() {
         JFrame frame = new JFrame("Delete Flash Card");
         frame.setLayout(new GridLayout(4, 1));
-        frame.setPreferredSize(new Dimension(800, 400));
+        frame.setPreferredSize(dimension);
         addTable(frame);
         frame.add(new JLabel("Enter the index of the flash card you want to delete (please enter a valid index):"));
         JTextField textField = new JTextField(1);
@@ -171,7 +172,7 @@ public class QuizAppGUI extends JFrame {
     //EFFECTS: displays a popup window to confirm user has deleted a flash card
     private void confirmDelete() {
         JFrame frame = new JFrame("Deleted!");
-        frame.setPreferredSize(new Dimension(800,400));
+        frame.setPreferredSize(dimension);
         loadImages();
         frame.add(new JLabel(deleted));
         frame.pack();
@@ -181,7 +182,7 @@ public class QuizAppGUI extends JFrame {
     //EFFECTS: displays the table of flash cards on the screen
     private void doViewAllFlashCards() {
         JFrame frame = new JFrame("All Flash Cards");
-        frame.setPreferredSize(new Dimension(800, 400));
+        frame.setPreferredSize(dimension);
         addTable(frame);
         frame.pack();
         frame.setVisible(true);
@@ -190,7 +191,7 @@ public class QuizAppGUI extends JFrame {
     //EFFECTS: creates a table with each flagged flash card and its information, then displays it to the screen
     private void doViewAllFlaggedFlashCards() {
         JFrame frame = new JFrame("All Flagged Flash Cards");
-        frame.setPreferredSize(new Dimension(800, 400));
+        frame.setPreferredSize(dimension);
         String[] titles = {"Question", "Answer", "Flagged?"};
         Object[][] data = new Object[quiz.getQuizFlaggedSize()][3];
         for (int i = 0; i < quiz.getQuizFlaggedSize(); i++) {
