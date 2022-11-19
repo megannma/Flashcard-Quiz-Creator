@@ -15,7 +15,7 @@ import java.io.IOException;
 //Quiz Application GUI
 //Referenced IntersectionGUI in C3-LectureLabStarter at https://github.students.cs.ubc.ca/CPSC210/C3-LectureLabStarter
 //Referenced https://docs.oracle.com/javase/tutorial/uiswing/examples/components/index.html for swing components
-//Images created using icons from Microsoft Office
+//Images created using icons from Microsoft PowerPoint
 public class QuizAppGUI extends JFrame {
     private Quiz quiz;
     private static final String JSON_STORE = "./data/quiz.json";
