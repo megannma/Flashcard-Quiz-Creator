@@ -15,6 +15,7 @@ import java.io.IOException;
 //Quiz Application GUI
 //Referenced IntersectionGUI in C3-LectureLabStarter at https://github.students.cs.ubc.ca/CPSC210/C3-LectureLabStarter
 //Referenced https://docs.oracle.com/javase/tutorial/uiswing/examples/components/index.html for swing components
+//Images created using icons from Microsoft Office
 public class QuizAppGUI extends JFrame {
     private Quiz quiz;
     private static final String JSON_STORE = "./data/quiz.json";
@@ -32,7 +33,7 @@ public class QuizAppGUI extends JFrame {
 
     //EFFECTS: runs the quiz application
     public QuizAppGUI() throws FileNotFoundException {
-        super("Quiz App UI");
+        super("Quiz Application GUI");
         setLayout(new GridLayout(3, 1));
         setPreferredSize(dimension);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
@@ -97,6 +98,8 @@ public class QuizAppGUI extends JFrame {
     }
 
     //EFFECTS: initializes images used
+    //Referenced method loadImages() from TrafficLightGUI in C3-LectureLabStarter at
+    //https://github.students.cs.ubc.ca/CPSC210/C3-LectureLabStarter
     private void loadImages() {
         String sep = System.getProperty("file.separator");
         saveSuccess = new ImageIcon(System.getProperty("user.dir") + sep
@@ -144,7 +147,7 @@ public class QuizAppGUI extends JFrame {
         frame.setVisible(true);
     }
 
-    //REQUIRES: index is valid; in other words, 0 <= index < quiz.getMainQuizSize()
+    //REQUIRES: index is valid: user enters an integer in the range of [0, quiz.getMainQuizSize())
     //MODIFIES: this
     //EFFECTS: deletes a flash card from the quiz; if flagged, deletes it from the flagged flash cards quiz
     private void doDeleteFlashCard() {
@@ -160,9 +163,13 @@ public class QuizAppGUI extends JFrame {
         deleteButton.setActionCommand("delete");
         deleteButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                quiz.deleteFlashCard(quiz.getFlashCard(Integer.parseInt(textField.getText())));
-                confirmDelete();
-                frame.dispose();
+                try {
+                    quiz.deleteFlashCard(quiz.getFlashCard(Integer.parseInt(textField.getText())));
+                    confirmDelete();
+                    frame.dispose();
+                } catch (Exception c) {
+                    frame.add(new JLabel("Please try again - enter a valid index"));
+                }
             }
         });
         frame.add(deleteButton);

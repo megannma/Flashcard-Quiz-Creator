@@ -23,8 +23,11 @@ as well.
 
 # Instructions for Grader
 
-- You can generate the first required event related to adding Xs to a Y by selecting the popup menu item labelled "Add flash card".
-- You can generate the second required event related to adding Xs to a Y by selecting the popup menu item labelled "Delete flash card".
+- You can generate the first required event related to adding Xs to a Y by selecting the popup menu item labelled "Add flash card",
+  then entering text into the text fields for Question and Answer, checking the box displayed if you want to flag your flash card,
+  and then clicking the button labelled "Add".
+- You can generate the second required event related to adding Xs to a Y by selecting the popup menu item labelled "Delete flash card",
+  entering the index corresponding to the flash card you want to delete, and then clicking the button labelled "Delete".
 - You can locate my visual component by clicking the buttons labelled "Save to file," "Load from file," or by adding/deleting a flash card.
 - You can save the state of my application by clicking the button labelled "Save to file".
 - You can reload the state of my application by clicking the button labelled "Load from file".
