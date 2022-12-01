@@ -20,22 +20,28 @@ public class Quiz implements Writable {
     }
 
     //MODIFIES: this
-    //EFFECTS: adds a flash card to the quiz, and adds it to the flagged quiz if it is flagged
+    //EFFECTS: adds a flash card to the quiz, and adds it to the flagged quiz if it is flagged, and adds a new event
+    //to EventLog describing the flash card the user added
     public void addFlashCard(FlashCard f) {
         if (f.hasFlag()) {
             flaggedQuiz.add(f);
         }
         mainQuiz.add(f);
+        EventLog.getInstance().logEvent(new Event("New flash card with question: \"" + f.getQuestion() + "\","
+                + " answer: \"" + f.getAnswer() + "\", flagged: \"" + f.hasFlag() + "\" added to the quiz."));
     }
 
     //REQUIRES: quiz is not empty
     //MODIFIES: this
-    //EFFECTS: deletes a flash card from the quiz, and deletes it from the flagged quiz if it is flagged
+    //EFFECTS: deletes a flash card from the quiz, and deletes it from the flagged quiz if it is flagged, and adds a
+    // new event to EventLog describing the flash card the user deleted
     public void deleteFlashCard(FlashCard f) {
         if (f.hasFlag()) {
             flaggedQuiz.remove(f);
         }
         mainQuiz.remove(f);
+        EventLog.getInstance().logEvent(new Event("Flash card with question: \"" + f.getQuestion() + "\","
+                + " answer: \"" + f.getAnswer() + "\", flagged: \"" + f.hasFlag() + "\" deleted from the quiz."));
     }
 
     //REQUIRES: quiz contains at least one flash card

@@ -31,3 +31,16 @@ as well.
 - You can locate my visual component by clicking the buttons labelled "Save to file," "Load from file," or by adding/deleting a flash card.
 - You can save the state of my application by clicking the button labelled "Save to file".
 - You can reload the state of my application by clicking the button labelled "Load from file".
+
+# Phase 4: Task 2
+Wed Nov 30 22:27:06 PST 2022
+New flash card with question: "test flash card question 1", answer: "test flash card answer 1", flagged: "true" added to the quiz.
+
+Wed Nov 30 22:27:26 PST 2022
+New flash card with question: "test flash card question 2", answer: "test flash card answer 2", flagged: "true" added to the quiz.
+
+Wed Nov 30 22:27:44 PST 2022
+New flash card with question: "test flash card question 3", answer: "test flash card answer 3", flagged: "false" added to the quiz.
+
+Wed Nov 30 22:27:53 PST 2022
+Flash card with question: "test flash card question 2", answer: "test flash card answer 2", flagged: "true" deleted from the quiz.

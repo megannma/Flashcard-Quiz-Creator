@@ -1,5 +1,7 @@
 package ui;
 
+import model.Event;
+import model.EventLog;
 import model.FlashCard;
 import model.Quiz;
 import persistence.JsonReader;
@@ -9,6 +11,8 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 
@@ -31,17 +35,26 @@ public class QuizAppGUI extends JFrame {
     private String[] commands = {"Select here", "Add flash card", "Delete flash card",
             "View all flash cards", "View all flagged flash cards"};
 
-    //EFFECTS: runs the quiz application
+    //EFFECTS: runs the quiz application and prints EventLog to console when user quits the application
     public QuizAppGUI() throws FileNotFoundException {
         super("Quiz Application GUI");
         setLayout(new GridLayout(3, 1));
         setPreferredSize(dimension);
-        setDefaultCloseOperation(EXIT_ON_CLOSE);
+        setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
         createQuizApp();
         createCommandMenu();
         addMainScreenButtons();
         pack();
         setVisible(true);
+        addWindowListener(new WindowAdapter() {
+            public void windowClosing(WindowEvent e) {
+                for (Event event : EventLog.getInstance()) {
+                    System.out.println(event.toString());
+                }
+                dispose();
+                System.exit(0);
+            }
+        });
     }
 
     //MODIFIES: this
