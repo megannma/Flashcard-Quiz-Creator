@@ -32,7 +32,7 @@ as well.
 - You can save the state of my application by clicking the button labelled "Save to file".
 - You can reload the state of my application by clicking the button labelled "Load from file".
 
-# Phase 4: Task 2
+## Phase 4: Task 2
 Wed Nov 30 22:27:06 PST 2022
 New flash card with question: "test flash card question 1", answer: "test flash card answer 1", flagged: "true" added to the quiz.
 
@@ -44,3 +44,20 @@ New flash card with question: "test flash card question 3", answer: "test flash 
 
 Wed Nov 30 22:27:53 PST 2022
 Flash card with question: "test flash card question 2", answer: "test flash card answer 2", flagged: "true" deleted from the quiz.
+
+## Phase 4: Task 3
+
+- If I had more time to work on the project, I would refactor the Quiz class to minimize code duplication. It is currently
+  organized in such a way that there are several methods that are duplicated, since I added different methods for the set of
+  all flash cards and the set of flagged flash cards. Some of these methods have very similar behaviour to each other, such as
+  the methods viewFlashCards() and viewFlaggedFlashCards(), so I would use the refactoring feature "extract method" to remove
+  duplication.
+- If I had more time to work on the project, I would refactor the QuizAppGUI class to increase cohesion. My GUI only has that
+  one class so the code inside it is quite messy. For example, the methods I created do not necessarily have organized functionality,
+  since my main focus at the time was ensuring each method was not too long. So, I would rewrite the methods in QuizAppGUI to be
+  more organized and have a clearer effect. Then I would move some of these methods into another class, for example, a class
+  called QuizGUI that handles GUI code related to Quiz.
+- If I had more time to work on the project, I would refactor the Quiz class to use the Singleton Pattern. This application
+  only has one instance of Quiz, as a new Quiz is created only when the application is opened. Hence, I think implementing
+  the Singleton Pattern would be useful for ensuring that there is only one instance of Quiz since there is no reason for
+  there to be more instances of Quiz.

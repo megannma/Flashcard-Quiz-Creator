@@ -34,7 +34,7 @@ public class Quiz implements Writable {
     //REQUIRES: quiz is not empty
     //MODIFIES: this
     //EFFECTS: deletes a flash card from the quiz, and deletes it from the flagged quiz if it is flagged, and adds a
-    // new event to EventLog describing the flash card the user deleted
+    //new event to EventLog describing the flash card the user deleted
     public void deleteFlashCard(FlashCard f) {
         if (f.hasFlag()) {
             flaggedQuiz.remove(f);
